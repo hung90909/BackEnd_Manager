@@ -8,7 +8,6 @@ const nhanVien = new Schema({
     password:String,
     sex:String,
     phone:String,
-    ID_Address:String,
     role:String,
   });
 module.exports = mongoose.model("nhanVien",nhanVien);

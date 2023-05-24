@@ -2,13 +2,14 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser')
+const methods = require('method-override');
 const nhanVien  = require("./controler/controlerNV")
 const port = 9999;
 const app = express();
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(express.json())
-// app.use(methods("_method"))
+app.use(methods("_method"))
 app.use(express.static("image"))
 mongoose.connect('mongodb://127.0.0.1:27017/Manager_ISore')
     .then(function () {
@@ -26,7 +27,7 @@ app.engine('.hbs', handlebars.engine({
 app.set('view engine', '.hbs');
 app.set('views', './views');
 
-app.use('/nhanVien',nhanVien)
+app.use('/Admin',nhanVien)
 app.listen(port, function () {
     console.log("running port " + port)
 }) 
