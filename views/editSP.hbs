@@ -1,0 +1,64 @@
+<div style="width: 400px; height: max-content; background-color: white; padding: 25px; margin-top: 55px;
+  border-radius: 20px ; margin-left: 400px;">
+    <h3 class="text-center" style="font-weight: bold;"> Thêm sản phẩm</h3>
+
+    <form action="/product/editSP/{{item._id}}?_method=PUT" method="POST" style="margin-top: 20px;" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="email">NameSP:</label>
+            <input type="text" class="form-control" id="email" placeholder="Name SP" name="name" value="{{item.name}}">
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-8" style="margin-top: 26px;">
+                <label for="">Loại sản phẩm: </label>
+                <select name="nameType" id="LoaiSP" style="padding: 5px;">
+                <option value="Giay">Giay</option>
+                <option value="Tai Nghe">Tai Nghe</option>
+                <option value="Ao thun">Ao thun</option>
+                </select>
+
+            </div>
+
+
+            <div class="form-group col-sm-4">
+                <label for="password">Giá:</label>
+                <input type="text" class="form-control" id="password" placeholder="Giá SP" name="price"
+                    value="{{item.price}}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label for="name">Số lượng:</label>
+                <input type="number" class="form-control" id="name" name="number" min="0" value="{{item.number}}">
+            </div>
+
+
+        </div>
+
+        <div class="form-group">
+            <p for="image">Hình ảnh:</p>
+            <img id="img-preview" style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: 10px;"
+                src="{{item.image}}" />
+            <input type="file" class="form-control-file" id="img" name="image" value="{{u.image}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/admin/getAllNV" class="btn btn-default">Cancel</a>
+    </form>
+</div>
+
+<script>
+    const imgInput = document.getElementById('img');
+    const imgPreview = document.getElementById('img-preview');
+    imgInput.addEventListener('change', () => {
+        const file = imgInput.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            imgPreview.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
